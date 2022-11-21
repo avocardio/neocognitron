@@ -36,8 +36,8 @@ for i in range(10):
 	print(a[-1])
 
 print('Forward training done.\n')
-print('Predicting number 3')
-b = n.estimate(x_train[3])
+print('Predicting number 5')
+b = n.estimate(x_train[5])
 print(b)
 # Print the location of the list of the maximum value
 print('The location of the maximum value is', np.argmax(b))
