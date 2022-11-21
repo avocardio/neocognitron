@@ -40,7 +40,7 @@ count = 0
 for i in tqdm.tqdm(range(N)):
 	print('Forwarding number', count)
 	history.append(n.estimate(x_train[i]))
-	print([round(i[0][0],4) for i in history[-1]])
+	print([round(i[0][0],7) for i in history[-1]])
 	count += 1
 	if count == 9:
 		count = 0
@@ -48,6 +48,6 @@ for i in tqdm.tqdm(range(N)):
 print('Forward training done.\n')
 print('Predicting number', NUMER_TO_PREDICT)
 b = n.estimate(x_train[NUMER_TO_PREDICT])
-print(b)
+print([round(i[0][0],7) for i in b])
 # Print the location of the list of the maximum value
 print('The location of the maximum value is', np.argmax(b))
