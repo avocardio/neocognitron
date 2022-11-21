@@ -6,7 +6,7 @@ Testing the neocognitron (1979) on MNIST digits (1998).
 Using the neocognitron implementation from: https://github.com/altugkarakurt/NeuralHDR
 
 
-## Usage
+## What does it do?
 It fowards 10 images (0-9) of each MNIST digit, and then finally predicts the number 5 image.
 ```
 for i in range(10):
@@ -16,10 +16,17 @@ neocognitron.estimate(mnist[5])
 ```
 The output is an array of 10 values, where the index of the highest value is the predicted digit.
 ```
-[array([[0.67101553]]), array([[0.66803563]]), array([[0.66949816]]), array([[0.66904382]]), array([[0.66371704]]), array([[0.65974766]]), array([[0.66211057]]), array([[0.66890992]]), array([[0.67033799]]), array([[0.66387558]])]
+[0.6679867, 0.6678071, 0.6658286, 0.6665703, 0.6675671, 0.6624054, 0.6684094, 0.665012, 0.6660348, 0.6659308]
 ```
 
-Usage:
+## Usage:
+
+Tune hyperparameters in `test.py` 
+```
+N = Number of digits for forwarding (has to be 10 or more, divisible by 10)
+NUMBER_TO_PREDICT = Number to predict (0 - 9)
+```
+And then:
 ```
 python test.py
 ```
