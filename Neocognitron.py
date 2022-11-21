@@ -110,7 +110,7 @@ class Neocognitron:
 		v_last = self.vplane.feed_forward(u_last)
 		uv_list = [(u_last, v_last)]
 		for l_ind, layer in enumerate(self.layers):
-			print("Layer {} begin.".format(l_ind))
+			# print("Layer {} begin.".format(l_ind))
 			(u_last, v_last) = layer.feed_forward(u_last, v_last)
 			uv_list.append((u_last, v_last))
 		return uv_list

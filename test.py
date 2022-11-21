@@ -4,19 +4,26 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import numpy as np
 import cv2
+import tqdm
+
+N = 100 # Number of examples to 'train' on
+
+# ------------------------------------------
 
 # Import the mnist dataset from tensorflow
 mnist = tf.keras.datasets.mnist
 (x_train, y_train), (_, _) = mnist.load_data()
-# x_train = x_train / 255.0 # ???
+x_train = x_train / 255.0 # ???
 
 # Convert from 28x28 to 19x19
 x_train = np.array([cv2.resize(x, (19, 19)) for x in x_train])
 
-# Make a dataset of 10 samples of each digit: 0-9 in the shape of (10, 19, 19)
-x_train = np.array([x_train[y_train == i][:1] for i in range(10)])
-x_train = np.reshape(x_train, (10, 19, 19))
-y_train = np.array([i for i in range(10)])
+if N % 10 != 0:
+	print("Warning: N is not divisible by 10 (labels)")
+
+# Make a dataset of N samples of each digit: 0-9 in the shape of (N, 19, 19)
+x_train = np.array([x_train[y_train == i][:int(N/10)] for i in range(10)])
+x_train = np.reshape(x_train, (N, 19,19))
 
 def windower(pl_size, l_size):
 	m = abs(pl_size-l_size)+1
@@ -27,13 +34,16 @@ windows = [(3, 3), windower(19, 21), (9, 9), windower(21, 13), (19, 19), windowe
 n = Neocognitron(19, layer_sizes, windows)
 
 
-
 # Forward training
-a = []
-for i in range(10):
-	print('Forwarding number', i)
-	a.append(n.estimate(x_train[i]))
-	print(a[-1])
+history = []
+count = 0
+for i in tqdm.tqdm(range(N)):
+	print('Forwarding number', count)
+	history.append(n.estimate(x_train[i]))
+	print([i[0][0] for i in history[-1]])
+	count += 1
+	if count == 9:
+		count = 0
 
 print('Forward training done.\n')
 print('Predicting number 5')
