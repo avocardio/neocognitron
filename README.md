@@ -36,3 +36,4 @@ python test.py
 * tensorflow
 * matplotlib
 * opencv-python
+* tqdm
