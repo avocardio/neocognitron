@@ -40,7 +40,7 @@ count = 0
 for i in tqdm.tqdm(range(N)):
 	print('Forwarding number', count)
 	history.append(n.estimate(x_train[i]))
-	print([round(i[0][0],2) for i in history[-1]])
+	print([round(i[0][0],4) for i in history[-1]])
 	count += 1
 	if count == 9:
 		count = 0
