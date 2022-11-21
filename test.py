@@ -6,7 +6,7 @@ import cv2
 import tqdm
 
 N = 100 # Number of examples to 'train' on
-NUMER_TO_PREDICT = 5 # Between 0 and 9
+NUMBER_TO_PREDICT = 5 # Between 0 and 9
 
 # ------------------------------------------
 
@@ -46,8 +46,8 @@ for i in tqdm.tqdm(range(N)):
 		count = 0
 
 print('Forward training done.\n')
-print('Predicting number', NUMER_TO_PREDICT)
-b = n.estimate(x_train[NUMER_TO_PREDICT])
+print('Predicting number', NUMBER_TO_PREDICT)
+b = n.estimate(x_train[NUMBER_TO_PREDICT])
 print([round(i[0][0],7) for i in b])
 # Print the location of the list of the maximum value
 print('The location of the maximum value is', np.argmax(b))
